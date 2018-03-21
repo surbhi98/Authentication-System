@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Edit_Profile{% endblock %}
+{% block body %}
+<style>
+.segment.container { 
+			font-size: 20px;
+			font-family: Times New Roman;
+			line-height: 1.3em;
+			padding: 0.2em 0.5em;
+			
+			background-color: #f0f5f5;
+		  }
+.container .header{text-align: center;}
+</style>
+
+
+
+<div class="ui segment container">
+	<form method="POST">
+	{% csrf_token %}
+	<div class="ui header">My Profile </div>
+	<div class="ui grey segment">
+		<h3>Username</h3>
+			<h4 class="ui teal inverted message"> {{user_form.username }} </h4> 
+		<h3>Firstname</h3>
+			<h4 class="ui teal inverted message"> {{user_form.first_name }} </h4> 
+		<h3>Lastname</h3>
+			<h4 class="ui teal inverted message"> {{ user_form.last_name }} </h4>
+		<h3>Email</h3>
+			<h4 class="ui teal inverted message"> {{ user_form.email }} </h4>
+		<h3>Password</h3>
+			<a href="{% url 'change_password' %}" class="ui teal inverted message"> Change Password </a> 
+		<h3> Description</h3>
+			<h4 class="ui teal inverted message"> {{ profile_form.bio }}</h4>
+		<h3> Location </h3>
+			<h4 class="ui teal inverted message"> {{ profile_form.location }} </h4>
+		<h3> Birth Date </h3>
+			<h4 class="ui teal inverted message"> {{ profile_form.birth_date }}</h4>
+		<button value='submit'>Change</button>
+		
+	</div>
+	
+	</form>
+</div>
+
+
+{% endblock %}

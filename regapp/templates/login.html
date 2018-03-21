@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<style>
+.segment.container { 
+			font-size: 20px;
+			font-family: Times New Roman;
+			line-height: 1.3em;
+			padding: 0.2em 0.5em;
+			
+			background-color: #f0f5f5;
+		  }
+.grey.segment { padding : 2em; }
+.container .header{text-align: center;}
+
+</style>
+
+<br><br>
+<div class="ui segment container">
+	<form method="POST">
+	{% csrf_token %}
+	<div class="ui header">Login</div>
+	<div class="ui grey segment">
+		{% for field in form %}
+		<h3> {{ field.label_tag }} </h3>
+			<h4> {{ field }} </h4>
+			{% if field.help_text %}
+			<small style="color: grey">{{ field.help_text }}</small>
+			{% endif %}
+			{% for error in field.errors %}
+				<h4 style="color: red">{{ error }}</h4>
+			{% endfor %}
+		{% endfor %}
+
+		<button class="ui big button" value='submit'>Login</button>
+		
+	</div>
+	
+	</form>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}

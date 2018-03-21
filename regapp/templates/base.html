@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+<link rel="image_src" type="image/jpeg" href="images/logo.png" />
+
+<!-- Site Properities -->
+<meta name="generator" content="DocPad v6.78.4" />
+<title>{% block title %}Accordion | Semantic UI{% endblock %}</title>
+
+<meta name="description" content="An accordion allows users to toggle the display of sections of content" />
+<meta name="keywords" content="html5, ui, library, framework, javascript" />
+{% load staticfiles %}
+  <script src="{% static 'javascript/library/jquery.min.js' %}"></script>
+  <script src="{% static 'javascript/library/clipboard.min.js' %}"></script>
+  <script src="{% static 'javascript/library/cookie.min.js' %}"></script>
+  <script src="{% static 'javascript/library/easing.min.js' %}"></script>
+  <script src="{% static 'javascript/library/highlight.min.js' %}"></script>
+  <script src="{% static 'javascript/library/history.min.js' %}"></script>
+  <script src="{% static 'javascript/library/tablesort.min.js' %}"></script>
+  <script src="{% static 'dist/semantic.min.js' %}"></script>
+   <script src="{% static 'dist/components/visibility.js' %}"></script>
+  <script src="{% static 'dist/components/sidebar.js' %}"></script>
+  <script src="{% static 'dist/components/transition.js' %}"></script> 
+	<script src="{% static 'javascript/docs.js"></script>
+  
+
+<link rel="stylesheet" type="text/css" class="ui" href="{% static 'dist/semantic.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/docs.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/rtl.css' %}">
+<!--check   <link rel="stylesheet/less" type="text/css" href="{% static 'src/definitions/modules/accordion.less' %}" >-->
+
+  <script src="{% static 'javascript/accordion.js' %}"></script>
+  <script src="https://m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+  <script src="https://m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+ <!-- <script src="javascript/library/less.min.js"></script> (used for describing code ) -->
+ <script src="{% static 'javascript/library/less.min.js' %}"></script>
+ <script src="{% static 'javascript/transition.js' %}"></script>
+<link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" />
+		<!-- <link rel="stylesheet" href="http://localhost:3002/dist/aos.css" /> -->
+		<link rel="stylesheet" href="{% static 'dist/css/styles.css' %}" />
+	
+		<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="{% static 'dist/components/transition.css' %}">
+		<script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
+
+
+<style>
+
+.all {	 background-color: #b3cccc;
+		padding: 0.2em 0.2em;
+				}
+
+.fixed.menu{   padding-top:1em;
+               min-height:8px;
+              
+			  
+}
+.mobile.menu { display: none; }
+
+
+
+				 
+.menu .item {  font-size: 1.33em; 
+			  color: black;
+			}
+
+
+
+h1 { 
+      color: #000099; 
+	  font-family:High Tower Text;
+	  font-size:1.8em ;
+	  text-align: center;
+	   padding: 0.1em;
+	  
+	}
+
+
+#cardcontent { font-size:1.3em;
+               line-height:1.3em;
+			   font-family: comic sans ms;
+			   color: black;
+}
+
+#sometext{ padding: 0em 2em; 
+			font-size:1.3em;
+			line-height: 1.5em;
+		    font-family: times new roman;
+		 }
+
+ 
+.title { font-size: 20px;
+         font-family: Times New Roman;
+		  line-height: 1.2em;
+		  
+		  padding: 0.2em 0.5em;
+		  text-align: center;
+		  }
+
+
+
+.footer.segment {
+      padding: 5em 0em;
+				}
+
+
+
+
+
+							   
+</style>
+ <style>
+ .teal.inverted.menu { min-width: 500px; }
+ 
+.vertical.inverted.hidden.menu{ display: none; 
+								overflow-y:scroll;
+							}
+
+.vertical.inverted.hidden.menu .item { text-align: left; color: teal;}
+
+.vertical.inverted.hidden.menu .item .menu .item { text-align: left; color:  #cce4ff;}
+
+@media screen and (max-width: 770px) 
+{
+	.mobile.menu { display: block; }
+	.teal.inverted.menu { display: none; }	
+	 h1{ 
+		color: #000099; 
+		font-family:High Tower Text;
+		font-size:1.2em ;
+		text-align: center;
+		padding: 0.1em;
+	  }
+	  
+.all {	 background-color: #b3cccc;
+		padding-right: 2.5em;
+				
+		}
+	
+}
+</style>
+<script>
+$(document)
+    .ready(function(){
+$(".toc.item").on({
+			click : function(){
+							$('.vertical.inverted.hidden.menu').css('display','block');
+						}
+			
+        });		
+	$(".item.close").click(function(){
+			$('.vertical.inverted.hidden.menu').hide();
+		});	
+	$(".all").click(function(){
+			$('.vertical.inverted.hidden.menu').hide();
+		});	
+		
+		
+		});
+
+</script>
+
+  
+  
+</head>
+<body>
+
+{% if user.is_authenticated %}
+
+<div class="ui large top fixed  secondary teal inverted menu">
+	
+	
+	<a href="{% url 'our' %}" class=" ui item right floated">About us</a>
+	<div class="ui simple dropdown item">
+					Services
+					<div class="ui  menu">
+						<a href="" class="item"> Supply Identification and Benchmarking</a>
+						<a href="" class="item" >Bargaining Power Analysis</a>
+						<a href="" class="item">Cost Modelling</a>
+						<a href="" class="item">360 Degree Cost Tracker</a>
+					</div>
+	</div>
+	<a href="#resources" class="item">Resources</a>
+	<div class="ui simple dropdown item">
+					Hello {{ user.username }}!
+					<div class="ui  menu">
+						<a href="{% url 'view_profile' %}" class="item">View Profile</a>
+						<a href="{% url 'update_profile' %}" class="item" >Edit Profile</a>
+						<div class="ui labeled button" tabindex="0">
+								
+								
+						</div>
+						
+						<a href="{% url 'logout' %}" class="item">Log out</a>
+					</div>
+	</div>
+	
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui top fixed inverted mobile menu">
+<a class="ui toc item left floated" id="toc_item">
+          <i class="teal sidebar icon"></i>
+</a>
+</div>
+<div class="ui left fixed vertical inverted hidden menu" id="mob_vertical_menu">
+  <a class="item close" id="toc_close">
+	<i class="chevron left icon"></i>
+  </a>
+  <div class="item">
+    <img class="ui mini image" src="/images/logo.png">
+  </div>
+  <a href="{% url 'our' %}"class="item">Home</a>
+  <a class="item">About Us</a>
+  
+  
+  <a class="item">resources</a>
+  <div class="ui item">
+		Hello {{ user.username }}!
+		<div class="ui  vertical inverted menu">
+			<a href="{% url 'view_profile' %}" class="item"></i>View Profile</a>
+			<a href="{% url 'update_profile' %}" class="item" >Edit Profile</a>
+			
+			<a href="{% url 'logout' %}" class="item">Log out</a>
+		</div>
+  </div>
+  <a class="item close" id="toc_close">
+	<i class="chevron left icon"></i>
+  </a>
+
+</div>
+
+
+<p></p>
+<p></p>
+
+
+
+{% else %}
+ <div class="ui large top fixed  secondary teal inverted menu">
+	
+	
+	<a href="{% url 'our' %}" class=" ui item right floated">About us</a>
+	
+	<a href="#resources" class="item">Resources</a>
+	<a href="{% url 'signup' %}" class="item">Subscription</a>
+	<a href="{% url 'login' %}" class="item">Log In</a>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui top fixed inverted mobile menu">
+<a class="ui toc item left floated" id="toc_item">
+          <i class="teal sidebar icon"></i>
+</a>
+</div>
+<div class="ui left fixed vertical inverted hidden menu" id="mob_vertical_menu">
+  <a class="item close" id="toc_close">
+	<i class="chevron left icon"></i>
+  </a>
+  <a href="{% url 'our' %}" class="active item">Home</a>
+  <a href="{% url 'our' %}" class="item">About Us</a>
+    
+  <a href="#resources" class="item">Resources</a>
+  <a href="{% url 'login' %}" class="item">Log In </a>
+  <a href="{% url 'signup' %}" class="item">Sign UP</a>
+  <a class="item close" id="toc_close">
+	<i class="chevron left icon"></i>
+  </a>
+</div>
+
+{% endif %}
+
+<div class="all">
+	<br><br><br>
+	{% block body %}
+	{% endblock %}
+</div>
+
+
+<div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">About</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Sitemap</a>
+            <a href="#" class="item">Contact Us</a>
+            <a href="#" class="item">Religious Ceremonies</a>
+            <a href="#" class="item">Gazebo Plans</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Services</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item">Banana Pre-Order</a>
+            <a href="#" class="item">DNA FAQ</a>
+            <a href="#" class="item">How To Access</a>
+            <a href="#" class="item">Favorite X-Men</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Footer Header</h4>
+          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

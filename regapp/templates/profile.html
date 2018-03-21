@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+{% block body %}
+<style>
+.segment.container { 
+			font-size: 20px;
+			font-family: Times New Roman;
+			line-height: 1.3em;
+			padding: 0.2em 0.5em;
+			
+			background-color: #f0f5f5;
+		  }
+.container .header{text-align: center;}
+
+</style>
+
+
+<div class="ui segment container">
+	
+	{% csrf_token %}
+	<div class="ui header">My Profile </div>
+	<div class="ui grey segment">
+		<h3>Firstname</h3>
+			<h4 class="ui teal inverted message"> {{user.first_name }} </h4> 
+		<h3>Lastname</h3>
+			<h4 class="ui teal inverted message"> {{ user.last_name }} </h4>
+		<h3>Email</h3>
+			<h4 class="ui teal inverted message"> {{ user.email }} </h4>
+		<h3> Description</h3>
+			<h4 class="ui teal inverted message"> {{ profilee.bio }}</h4>
+		<h3> Location </h3>
+			<h4 class="ui teal inverted message"> {{ profilee.location }} </h4>
+		<h3> Birth Date </h3>
+			<h4 class="ui teal inverted message"> {{ profilee.birth_date }}</h4>
+		<h3 class="ui bottom attached button"><a href="{% url 'update_profile' %}">Edit Profile</a></h3>
+		{% if messages %}
+		  <ul class="messages">
+			{% for message in messages %}
+			  <li class="{{ message.tags }}">{{ message }}</li>
+			{% endfor %}
+		  </ul>
+		{% endif %}
+	</div>
+	
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
